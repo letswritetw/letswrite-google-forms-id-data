@@ -1,0 +1,89 @@
+
+*, *::before, *::after
+  box-sizing: border-box
+
+@import form
+@import loading
+
+body
+  background: #F5F5F5
+
+img
+  max-width: 100%
+
+h1
+  line-height: 1.5
+  font-size: 28px
+
+a
+  color: #00A7E5
+
+=m-640
+  @media (max-width: 640px)
+    @content
+
+.container
+  padding-top: 3vh
+  padding-bottom: 3vh
+  +m-640
+    padding-top: 0
+
+.w-640
+  margin-right: auto
+  margin-left: auto
+  max-width: 640px
+  +m-640
+    padding-right: 15px
+    padding-left: 15px
+
+.text-center
+  text-align: center
+
+.kv
+  margin-bottom: 1rem
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3)
+  &, img
+    border-radius: 10px
+  img
+    display: block
+    height: auto
+  +m-640
+    padding-right: 0
+    padding-left: 0
+    &, img
+      border-radius: 0
+
+.two-col
+  display: flex
+  justify-content: space-between
+  .col
+    width: 48%
+  +m-640
+    flex-wrap: wrap
+    .col
+      width: 100%
+
+.submit
+  text-align: center
+  a
+    display: inline-block
+    padding: .375rem 2rem
+    line-height: 1.5
+    user-select: none
+    background-color: #00A7E5
+    border: 1px solid transparent
+    border-radius: .25rem
+    text-align: center
+    vertical-align: middle
+    text-decoration: none
+    font-weight: 400
+    font-size: 1rem
+    color: rgba(#FFF, .8)
+    transition: color .2s
+    &:focus
+      outline: 0
+    &:hover
+      color: #FFF
+    &.disabled
+      opacity: .5
+      pointer-events: none

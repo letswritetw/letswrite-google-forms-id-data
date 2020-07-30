@@ -1,0 +1,108 @@
+- var link = 'letswrite-google-forms-id-data'
+- var title = 'Google表單，輸入ID後自動帶入其它欄位資料'
+- var description = '文章大綱'
+
+<!DOCTYPE html>
+html(lang="zh-TW")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title #{title} - Augustus - Let's Write
+
+    link(rel="canonical", href=`https://letswritetw.github.io/${link}/`)
+    meta(property="og:url", content=`https://letswritetw.github.io/${link}/`)
+
+    meta(property="fb:app_id", content="2435108729902508")
+    meta(property="og:type", content="website")
+
+    meta(property="og:site_name", content="Let's Write")
+    meta(property="og:title", content=`${title} - Augustus - Let's Write`)
+    meta(itemprop="name", content=`${title} - Augustus - Let's Write`)
+
+    meta(name="description", content=description)
+    meta(property="og:description", content=description)
+    meta(itemprop="description", content=description)
+
+    meta(itemprop="image", content=`https://letswritetw.github.io/${link}/fb.jpg`)
+    meta(property="og:image", content=`https://letswritetw.github.io/${link}/fb.jpg`)
+    meta(property="og:image:width", content="1200")
+    meta(property="og:image:height", content="630")
+    meta(property="og:image:alt", content=title)
+
+    link(rel="shortcut icon", href="https://i0.wp.com/letswrite.tw/wp-content/uploads/2019/07/cropped-letswrite512-1.jpg")
+
+    //- css
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css")
+    link(rel="stylesheet", href="dist/style.min.css")
+
+    // Google Tag Manager
+    script.
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PGQ9WQT');
+  body
+
+    // Google Tag Manager (noscript)
+    noscript
+      iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT", height="0", width="0", style="display:none;visibility:hidden")
+    
+    #app.container
+
+      //- loading
+      .double-wrap(:class="{ hide: !loading }")
+        .double
+          .double-bounce1
+          .double-bounce2
+
+      section.kv.w-640
+        img(src="https://picsum.photos/640/360", width="640", height="360", alt="主視覺")
+      
+      section.form.w-640
+        .text-center
+          h1 Google表單，輸入ID後自動帶入其它欄位資料
+          p 筆記文：
+            a(href="https://letswrite.tw/google-forms-id-data/", target="_blank") Let's Write
+        .form-group
+          label(for="main_id") 請輸入 ID（0101 - 0112）
+          input#main_id.form-control(type="number", v-model="id", @input="limitIdLen(id)")
+        .two-col
+          .col
+            .form-group
+              label(for="name") 姓名
+              .prepend
+
+                //- 男
+                .pre.male(v-if="person.gender == '男'")
+                  svg(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 24 24", width="24", height="24")
+                    path(fill="none", d="M0 0h24v24H0z")
+                    path(fill="#00A7E5", d="M18.586 5H14V3h8v8h-2V6.414l-3.537 3.537a7.5 7.5 0 1 1-1.414-1.414L18.586 5z")
+                
+                //- 女
+                .pre.female(v-if="person.gender == '女'")
+                  female
+                  svg(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 24 24", width="24", height="24")
+                    path(fill="none", d="M0 0h24v24H0z")
+                    path(fill="#E91E63", d="M11 15.934A7.501 7.501 0 0 1 12 1a7.5 7.5 0 0 1 1 14.934V18h5v2h-5v4h-2v-4H6v-2h5v-2.066z")
+                input#name.form-control(type="text", v-model="person.name", disabled)
+          .col
+            .form-group
+              label(for="phone") 電話
+              input#phone.form-control(type="tel", v-model="person.phone", disabled)
+        
+        .form-group
+          label(for="site") 地址
+          input#site.form-control(type="text", v-model="person.site", disabled)
+        
+        .form-group
+          label(for="message") 說句話吧
+          input#message.form-control(type="text", v-model="person.message", :disabled="person.name == undefined")
+        
+        .submit
+          a(href="#", :class="{ disabled: person.name == undefined }", @click.prevent="submit") 送出
+
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js")
+    script(src="dist/main.min.js")
