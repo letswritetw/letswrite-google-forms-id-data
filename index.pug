@@ -97,7 +97,7 @@ html(lang="zh-TW")
           input#site.form-control(type="text", v-model="person.site", disabled)
         
         .form-group
-          label(for="message") 說句話吧
+          label(for="message") 備註
           input#message.form-control(type="text", v-model="person.message", :disabled="person.name == undefined")
         
         .submit
