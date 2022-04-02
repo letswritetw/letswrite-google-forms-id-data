@@ -2,4 +2,4 @@
 
 Demo：[demo](https://letswritetw.github.io/letswrite-google-forms-id-data/)
 
-筆記文：[Let's Write](https://letswrite.tw/google-forms-id-data/)
+筆記文：[Let's Write](https://www.letswrite.tw/google-forms-id-data/)
